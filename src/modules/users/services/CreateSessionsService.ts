@@ -26,7 +26,6 @@ class CreateSessionsService {
 
     //hash funcao do bcrypy para gerar criptografia
     const passwordConfirmed = await compare(password, user.password);
-
     if (!passwordConfirmed) {
       throw new AppError('Incorrect email/password combination.', 401);
     }
