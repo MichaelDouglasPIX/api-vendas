@@ -3,6 +3,7 @@ import CreateUserService from '../services/CreateUserService';
 import DeleteUserService from '../services/DeleteUserService';
 import ListUserService from '../services/ListUserService';
 import UpdateUserService from '../services/UpdateUserService';
+import { instanceToInstance } from 'class-transformer';
 
 export default class UsersController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -10,7 +11,7 @@ export default class UsersController {
 
     const users = await listUser.execute();
 
-    return response.json(users);
+    return response.json(instanceToInstance(users));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -24,7 +25,7 @@ export default class UsersController {
       password,
     });
 
-    return response.json(user);
+    return response.json(instanceToInstance(user));
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
